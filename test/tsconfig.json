@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "noEmit": true,
+    "types": ["jest", "node"],
+    // "baseUrl": "../",       // 💡 절대 경로 기준점을 프로젝트 루트로 설정
+    "rootDir": "../"        // 💡 소스 코드 추적 허용 범위를 프로젝트 전체로 확장
+  },
+  "include": ["**/*.spec.ts", "**/*.e2e-spec.ts", "../src/**/*"]
+}

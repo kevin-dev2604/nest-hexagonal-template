@@ -1,0 +1,6 @@
+db:
+  synchronize: true
+
+jwt:
+  accessSecret: 'my-secret'
+  refreshSecret: 'refresh-secret'
