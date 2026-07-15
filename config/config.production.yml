@@ -17,8 +17,8 @@ redis:
 jwt:
   accessSecret: 'my-secret'
   refreshSecret: 'refresh-secret'
-  accessTokenExpiresIn: 3600
-  refreshTokenExpiresIn: 86400
+  accessTokenExpiresIn: 750      # 보통 짧게 설정 (15분)
+  refreshTokenExpiresIn: 604800  # 보통 길게 설정 (7일)
 
 oauth:
   google:
