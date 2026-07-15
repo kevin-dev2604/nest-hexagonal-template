@@ -8,8 +8,6 @@ import { JwtPort } from './ports/outbound/jwt.port';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AccessTokenStrategy } from './adapters/outbound/jwt/access-token.strategy';
-import config from 'config';
-import { JwtConfig } from '../common/configs/global-types';
 import { RefreshTokenStrategy } from './adapters/outbound/jwt/refresh-token.strategy';
 import { LoginHistoryRepositoryAdapter } from './adapters/outbound/login-history.adapter';
 import { LoginHistoryRepositoryPort } from './ports/outbound/login-history-repository.port';
@@ -25,17 +23,10 @@ import { GithubOauthGuard } from './adapters/inbound/guards/github-oauth.guard';
 import { JwtAccessGuard } from './adapters/inbound/guards/jwt-access.guard';
 import { JwtRefreshGuard } from './adapters/inbound/guards/jwt-refresh.guard';
 
-const jwtConfig = config.get<JwtConfig>('jwt');
-
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      // secret: process.env.JWT_ACCESS_SECRET || jwtConfig.accessSecret,
-      // signOptions: {
-      //   expiresIn: +(process.env.JWT_ACCESS_TOKEN_EXPIRESIN || jwtConfig.accessTokenExpiresIn)
-      // }
-    }),
+    JwtModule.register({}),
 
     // 💡 이 부분이 반드시 들어가 있어야 Nest.js가 (Domain의)Repository를 생성해 줍니다!
     TypeOrmModule.forFeature([UserInfoEntity, LoginHistoryEntiry]),

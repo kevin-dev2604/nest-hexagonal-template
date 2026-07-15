@@ -1,0 +1,31 @@
+server:
+  port: 3000
+
+db:
+  type: 'postgres'
+  host: ${DOCKER_DB_HOST}
+  port: ${DOCKER_DB_PORT}
+  username: ${DOCKER_DB_USERNAME}
+  password: ${DOCKER_DB_PASSWORD}
+  database: ${DOCKER_DB_NAME}
+  logging: false
+  # synchronize: true
+
+redis:
+  host: ${DOCKER_REDIS_HOST}
+  port: ${DOCKER_REDIS_PORT}
+  db: 
+
+jwt:
+  accessSecret: 'my-secret'
+  refreshSecret: 'refresh-secret'
+  accessTokenExpiresIn: 3600
+  refreshTokenExpiresIn: 86400
+
+oauth:
+  google:
+    clientId: ${GOOGLE_CLIENT_ID}
+    clientSecret: ${GOOGLE_CLIENT_SECRET}
+  github:
+    clientId: ${GITHUB_CLIENT_ID}
+    clientSecret: ${GITHUB_CLIENT_SECRET}

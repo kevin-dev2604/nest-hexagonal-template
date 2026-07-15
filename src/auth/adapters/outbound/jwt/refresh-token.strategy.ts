@@ -1,24 +1,22 @@
 import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import config from "config";
-import { JwtConfig } from "../../../../common/configs/global-types";
 import { Request } from "express";
 import { REDIS_CLIENT } from "../../../../common/infrastructure/redis/redis.module";
 import Redis from "ioredis";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
   constructor(
     @Inject(REDIS_CLIENT) private readonly redis: Redis,
+    private configService: ConfigService,
   ) {
-    const jwtConfig = config.get<JwtConfig>('jwt');
-
     super({
       // 1. 헤더에서 Refresh Token 추출 (예: x-refresh-token: <token>)
       jwtFromRequest: ExtractJwt.fromHeader('x-refresh-token'),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_REFRESH_SECRET || jwtConfig.refreshSecret,
+      secretOrKey: configService.get<string>('jwt.refreshSecret'),
       passReqToCallback: true, // validate 메서드에서 req 객체에 접근할 수 있도록 설정
     })
   }

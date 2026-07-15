@@ -1,18 +1,20 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Profile, Strategy } from "passport-github2";
-import config from 'config';
-import { OAuthConfig } from "../../../../common/configs/global-types";
 import axios from "axios";
-
-const githubConfig = config.get<OAuthConfig>('oauth.github');
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
-export class GithubStrategy extends PassportStrategy (Strategy, 'github') {
-  constructor() {
+export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
+  constructor(
+    private configService: ConfigService,
+  ) {
+    const clientID = configService.get<string>('oauth.github.clientId') as string;
+    const clientSecret = configService.get<string>('oauth.github.clientSecret') as string;
+
     super({
-      clientID: githubConfig.clientId,
-      clientSecret: githubConfig.clientSecret,
+      clientID,
+      clientSecret,
       callbackURL: 'http://localhost:3000/auth/signin/github/callback',
       scope: ['user:email'],
     });
@@ -42,7 +44,7 @@ export class GithubStrategy extends PassportStrategy (Strategy, 'github') {
       picture: photos && photos[0] ? photos[0].value : null,
       accessToken,
     };
-    
+
     done(null, user);
   }
 }

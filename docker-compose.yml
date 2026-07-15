@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev # 1) 개발 전용 Dockerfile 지정 ⚠️
+      target: development # ⚠️ 이 부분이 명시되어 있어야 devDependencies가 설치된 이미지로 실행됩니다!
+    container_name: nest-hexagonal-templates
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development   # 2) 환경 변수를 개발 모드로 지정
+    env_file:
+      - .env
+    # 3) 실시간 코드 동기화(Hot-Reload)를 위한 볼륨 설정 ⚠️
+    volumes:
+      - .:/usr/src/app                  # 내 컴퓨터의 코드를 컨테이너 내부와 실시간 동기화
+      - /usr/src/app/node_modules       # 로컬 node_modules가 컨테이너 내부를 덮어쓰지 않도록 보호 (익명 볼륨)
+    networks:
+      - portfolio_net 
+
+# ⚠️ 기존에 있던 외부 네트워크를 정의하는 핵심 구문
+networks:
+  portfolio_net: # docker-compose 파일 내부에서 부를 별칭
+    external: true # 💡 "새로 만들지 말고 외부 네트워크를 가져와라"라는 뜻
+    name: issuetrack-net # 💡 실제 'docker network ls'에 나오는 기존 네트워크 이름 기입!
