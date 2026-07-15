@@ -16,7 +16,7 @@ export const REDIS_CLIENT = 'REDIS_CLIENT';
           const redisUrl = configService.get<string>('redis.url');
 
           if (!redisUrl) {
-            throw new Error('REDIS_URL이 .env 파일에 정의되어 있지 않습니다.');
+            throw new Error('redis.url 설정값이 .env 파일에 정의되어 있지 않습니다.');
           }
 
           // ioredis 인스턴스 생성 및 반환

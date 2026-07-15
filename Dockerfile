@@ -33,6 +33,9 @@ COPY --from=builder /usr/src/app/package*.json ./
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/dist ./dist
 
+# ⭐️ [수정] YAML 설정 파일이 들어있는 config 폴더도 빌드 스테이지에서 가져옵니다!
+COPY --from=builder /usr/src/app/config ./config
+
 # Non-root 계정(node)을 사용하여 보안 강화
 USER node
 
