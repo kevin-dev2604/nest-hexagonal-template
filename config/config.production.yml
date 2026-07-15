@@ -1,6 +1,29 @@
+server:
+  port: 3000
+
 db:
-  synchronize: true
+  type: 'postgres'
+  host: ${SUPABASE_DB_HOST}
+  port: ${SUPABASE_DB_PORT}
+  username: ${SUPABASE_DB_USERNAME}
+  password: ${SUPABASE_DB_PASSWORD}
+  database: ${SUPABASE_DB_NAME}
+  logging: false
+  # synchronize: true
+
+redis:
+  url: ${UPSTASH_REDIS_URL}
 
 jwt:
   accessSecret: 'my-secret'
   refreshSecret: 'refresh-secret'
+  accessTokenExpiresIn: 3600
+  refreshTokenExpiresIn: 86400
+
+oauth:
+  google:
+    clientId: ${GOOGLE_CLIENT_ID}
+    clientSecret: ${GOOGLE_CLIENT_SECRET}
+  github:
+    clientId: ${GITHUB_CLIENT_ID}
+    clientSecret: ${GITHUB_CLIENT_SECRET}
