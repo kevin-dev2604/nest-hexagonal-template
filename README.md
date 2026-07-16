@@ -7,7 +7,9 @@
 
 ## 🌐 데모 사이트 링크
 
-* 🔗https://nest-hexagonal-template.onrender.com/api-docs#/
+* 🔗https://nest-hexagonal-template.onrender.com/api-docs
+* 데모 사이트의 도메인(`https://nest-hexagonal-template.onrender.com`)으로 Postman 등의 API 플랫폼에서 테스트 가능합니다.  
+  You can test on API platforms such as Postman using the demo site's domain (`https://nest-hexagonal-template.onrender.com`).
 
 ---
 
