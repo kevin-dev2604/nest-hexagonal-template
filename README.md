@@ -16,8 +16,8 @@
 ## 💡 프로젝트를 통해 증명하고자 하는 것 (What this project demonstrates)
 
 * **실무 중심의 기술적 깊이 (Production-Grade Technical Depth)**
-  * 단순한 CRUD 예제를 넘어 OAuth2 소셜 연동, FCM 비동기 푸시 처리, Upstash Redis를 활용한 RTR(Refresh Token Rotation) 등 실제 서비스 환경에서 마주하는 까다로운 도전 과제들을 해결하고 반영했습니다.  
-  *Beyond simple CRUD examples, this project tackles and implements real-world production challenges such as secure OAuth2 integration, asynchronous FCM push events, and Upstash Redis-backed RTR (Refresh Token Rotation).*
+  * 단순한 CRUD 예제를 넘어 OAuth2 소셜 연동, <!-- FCM 비동기 푸시 처리, -->Upstash Redis를 활용한 RTR(Refresh Token Rotation) 등 실제 서비스 환경에서 마주하는 까다로운 도전 과제들을 해결하고 반영했습니다.  
+  *Beyond simple CRUD examples, this project tackles and implements real-world production challenges such as secure OAuth2 integration,<!-- asynchronous FCM push events--> and Upstash Redis-backed RTR (Refresh Token Rotation).*
 
 * **프레임워크에 종속되지 않는 독립적 설계 (Framework-Agnostic Core Design)**
   * 헥사고날 아키텍처(포트 앤 어댑터)를 엄격히 준수하여, 핵심 비즈니스 로직(Domain, UseCase)을 웹 프레임워크(NestJS)나 데이터베이스 기술(TypeORM)로부터 철저하게 격리했습니다.  
